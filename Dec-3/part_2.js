@@ -27,6 +27,12 @@ let pos_3 = [0, -1];
 let pos_4 = [0, -1];
 let pos_5 = [0, -1];
 
+
+//Ok there is some defence to this answer
+//I know this code is long and not that beautiful
+//but we only iterate through the file once.
+//So it is quick and use no extra memory.
+
 //We only need to iterate through once
 rl.on("line", (line) => {
   // Come to a new line, move down
@@ -38,7 +44,6 @@ rl.on("line", (line) => {
 
   //get linr arr
   let arr = line.split("");
-
   //if y movement is done, move to right
   if (pos_1[1] === slop_1[1]) pos_1[0] += slop_1[0];
   if (pos_2[1] === slop_2[1]) pos_2[0] += slop_2[0];
