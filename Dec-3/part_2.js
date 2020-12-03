@@ -7,7 +7,7 @@ const rl = readline.createInterface({
   crlfDelay: Infinity,
 });
 
-//Array of numbers that we are looking for
+//Set up
 let slop_1_count = 0;
 let slop_2_count = 0;
 let slop_3_count = 0;
@@ -26,6 +26,7 @@ let pos_2 = [0, -1];
 let pos_3 = [0, -1];
 let pos_4 = [0, -1];
 let pos_5 = [0, -1];
+
 //We only need to iterate through once
 rl.on("line", (line) => {
   // Come to a new line, move down
