@@ -9,23 +9,33 @@ let map = input.map((line) => line.split(""));
 // console.log(map);
 let maxRow = map.length - 1;
 let maxCol = map[0].length - 1;
-// console.log(`max row: ${maxRow}`);
-// console.log(`max row: ${maxCol}`);
 
-runOnce(map);
-runOnce(map);
-runOnce(map);
-runOnce(map);
-runOnce(map);
-runOnce(map);
-runOnce(map);
-runOnce(map);
+let done = false;
+while (!done) {
+  done = runOnce(map);
+}
 
-console.log(map);
+console.log("part 1: ");
+console.log(countSeated(map));
+
+function countSeated(map) {
+  let count = 0;
+  for (let row = 0; row < map.length; row++) {
+    for (let col = 0; col < map[0].length; col++) {
+      if (map[row][col] === "#") {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function printMap(map) {
+  console.log(map.map((line) => line.join("")));
+}
 function runOnce(map) {
   let seatToSet = [];
   let seatToLeave = [];
-
   for (let row = 0; row < map.length; row++) {
     for (let col = 0; col < map[0].length; col++) {
       //If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
@@ -43,12 +53,18 @@ function runOnce(map) {
       }
     }
   }
-  seatToSet.forEach((seat) => {
-    map[seat.row][seat.col] = "#";
-  });
-  seatToLeave.forEach((seat) => {
-    map[seat.row][seat.col] = "L";
-  });
+
+  if (seatToSet.length === 0 && seatToLeave.length === 0) {
+    return true;
+  } else {
+    seatToSet.forEach((seat) => {
+      map[seat.row][seat.col] = "#";
+    });
+    seatToLeave.forEach((seat) => {
+      map[seat.row][seat.col] = "L";
+    });
+    return false;
+  }
 }
 
 function checkIfAroundIsSeated(row, col, map) {
